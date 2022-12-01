@@ -10,7 +10,6 @@ const PeoplePage = () => {
     const res = await getApiResourse(url);
     /* можно выводить деструктиризацию там где map метод element {name и url}*/
     const peopleList = res.results.map(({ name, url }) => {
-      console.log(url);
       const id = getPeopleId(url);
       console.log(id);
 
