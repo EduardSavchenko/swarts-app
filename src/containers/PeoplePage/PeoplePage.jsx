@@ -13,7 +13,7 @@ const PeoplePage = () => {
       console.log(url);
       const id = getPeopleId(url);
       console.log(id);
-      console.log(id);
+
       return {
         name,
         url,
