@@ -35,7 +35,7 @@ function css() {
 }
 
 function watchCss() {
-    return watch(["./styles/*"], css);
+    return watch(["./src/styles/*"], css);
 }
 
 exports.build = parallel(css, svg);
