@@ -1,5 +1,4 @@
-import style from "./App.module.css";
-import PeoplePage from "../PeoplePage";
+import { PeoplePage } from "../PeoplePage/PeoplePage";
 
 const App = () => {
   return (
@@ -9,4 +8,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };

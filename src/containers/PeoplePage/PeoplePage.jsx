@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { getApiResourse } from "../../utils/network";
 import { API_PEOPLE } from "../../constants/api";
-import { getPeopleId } from "../../services/getPeopleData";
-import style from "./PeoplePage.module.css";
+import { getPeopleId, getPeopleImg } from "../../services/getPeopleData";
 
 const PeoplePage = () => {
   const [people, setPeople] = useState(null);
@@ -11,11 +10,12 @@ const PeoplePage = () => {
     /* можно выводить деструктиризацию там где map метод element {name и url}*/
     const peopleList = res.results.map(({ name, url }) => {
       const id = getPeopleId(url);
-      console.log(id);
-
+      const img = getPeopleImg(id);
+      console.log(img);
       return {
+        id,
         name,
-        url,
+        img,
       };
     });
     setPeople(peopleList);
@@ -27,10 +27,14 @@ const PeoplePage = () => {
 
   return (
     <>
+      <h1>HELLO</h1>
       {people && (
         <ul>
-          {people.map(({ name, url }) => (
-            <li key={name}>{name}</li>
+          {people.map(({ name, id, img }) => (
+            <li key={id}>
+              <img src={img} alt={name} />
+              <p> {name}</p>
+            </li>
           ))}
         </ul>
       )}
@@ -38,4 +42,4 @@ const PeoplePage = () => {
   );
 };
 
-export default PeoplePage;
+export { PeoplePage };
