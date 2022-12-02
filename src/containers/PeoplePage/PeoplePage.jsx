@@ -39,4 +39,4 @@ const PeoplePage = ({ setErrorApi }) => {
   );
 };
 
-export {withErrorApi(PeoplePage);}
+export const withErrorApi(PeoplePage)
