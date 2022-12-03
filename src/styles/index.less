@@ -1,12 +1,13 @@
 @border-radius-small: 3px;
 
 @font-family-main: sans-serif;
-
+@font-size-header: 20px;
 @spacing-medium: 20px;
 
 @color-dark-gray: #10100e;
 @color-white: #fff;
 @color-black: #000;
+@color-yellow: #ffff00;
 
 body {
   background-color: @color-dark-gray;
@@ -42,4 +43,17 @@ h2 {
     object-position: top center;
     border-radius: @border-radius-small @border-radius-small 0 0;
   }
+}
+.texterror {
+  width: 600px;
+  margin: auto;
+  margin-top: 100px;
+  line-height: 1.7;
+  font-size: @font-size-header;
+  text-align: center;
+  text-shadow: 0 0 2px @color-white;
+  color: @color-yellow;
+  -webkit-text-stroke-color: @color-yellow;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-fill-color: transparent;
 }

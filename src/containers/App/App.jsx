@@ -1,9 +1,9 @@
-import { PeoplePage } from "../PeoplePage/PeoplePage";
+import { Name } from "../PeoplePage/PeoplePage";
 
 const App = () => {
   return (
     <>
-      <PeoplePage />
+      <Name />
     </>
   );
 };
