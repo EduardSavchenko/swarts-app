@@ -5,7 +5,8 @@ export const HTTPS = "https://";
 //swapi constanti // с сервиса swapi 
 export const SWAPI_ROOT = "swapi.py4e.com/api/";
 export const SWAPI_PEOPLE = "people";
-export const API_PEOPLE = HTTPS + SWAPI_ROOT + SWAPI_PEOPLE;
+export const SWAPI_PARAM_PAGE = "/?page=";
+export const API_PEOPLE = HTTPS + SWAPI_ROOT + SWAPI_PEOPLE + SWAPI_PARAM_PAGE;
 
 
 //visual guide

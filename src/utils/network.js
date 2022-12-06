@@ -1,5 +1,16 @@
+import { HTTP, HTTPS } from "../constants/api";
 
+/**
+ * изменяется с url HTTP на НТТPS
+ * @param {String} url - для изм.
+ * @returns {String} url - с HTTPS
+ */
+const chancheHTTP = (url) => {
+    const results = url ? url.replace(HTTP, HTTPS) : url;
+    return results;
+}
 
+export { chancheHTTP }
 /*export const getApiResourse = (url) => {
     fetch(url)
         .then(res => res.json())
@@ -7,6 +18,13 @@
         .catch(error => console.log(error.message))
 }
 */
+
+
+/**
+ * Отправялет запрос fetch 
+ * @param {String} url для запроса
+ * @returns {Promise} Promise с результатом запроса
+  */
 export const getApiResourse = async (url) => {
     try {
         const res = await fetch(url);

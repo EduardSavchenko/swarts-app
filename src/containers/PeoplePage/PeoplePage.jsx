@@ -1,19 +1,34 @@
 import { useEffect, useState } from "react";
-import { getApiResourse } from "../../utils/network";
+import { useSearchParams } from "react-router-dom";
+import { getApiResourse, chancheHTTP } from "../../utils/network";
 import { API_PEOPLE } from "../../constants/api";
 import { withErrorApi } from "../../hoc/withErrorApi";
-import { getPeopleId, getPeopleImg } from "../../services/getPeopleData";
+import {
+  getPeopleId,
+  getPeopleImg,
+  getPeoplePageId,
+} from "../../services/getPeopleData";
 import { PeopleList } from "../../components/PeoplePage/PeopleList/PeopleList";
+import PropTypes from "prop-types";
+import { PeopleNavigation } from "./PeopleNavigation";
 
 const PeoplePage = ({ setErrorApi }) => {
   const [people, setPeople] = useState(null);
+  const [previousPage, setPreviousPage] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+  const [counterPage, setCounterPage] = useState(1);
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const queryPage = searchParams.get("page");
+
   const getResourse = async (url) => {
     const res = await getApiResourse(url);
+
     if (res) {
       const peopleList = res.results.map(({ name, url }) => {
         const id = getPeopleId(url);
         const img = getPeopleImg(id);
-        console.log(img);
+
         return {
           id,
           name,
@@ -21,6 +36,9 @@ const PeoplePage = ({ setErrorApi }) => {
         };
       });
       setPeople(peopleList);
+      setPreviousPage(chancheHTTP(res.previous));
+      setNextPage(chancheHTTP(res.next));
+      setCounterPage(getPeoplePageId(url));
       setErrorApi(false);
     } else {
       setErrorApi(true);
@@ -29,14 +47,24 @@ const PeoplePage = ({ setErrorApi }) => {
   /* можно выводить деструктиризацию там где map метод element {name и url}*/
 
   useEffect(() => {
-    getResourse(API_PEOPLE);
+    getResourse(API_PEOPLE + queryPage);
   }, []);
 
   return (
     <>
-      <h2>Navigation</h2>({people && <PeopleList people={people} />})
+      <PeopleNavigation
+        getResourse={getResourse}
+        previousPage={previousPage}
+        nextPage={nextPage}
+        counterPage={counterPage}
+      />
+      {people && <PeopleList people={people} />}
     </>
   );
 };
 
-export const Name = withErrorApi(PeoplePage);
+PeoplePage.propTypes = {
+  setErrorApi: PropTypes.func,
+};
+
+export const PeoplePageWE = withErrorApi(PeoplePage);
