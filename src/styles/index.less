@@ -6,10 +6,12 @@
 @font-size-header: 26px;
 @font-size-subheader: 18px;
 @font-size-main: 16px;
+@font-size-standart: 14px;
 
 @text-shadow-yellow: 0 0 2px @color-white, 0 0 40px @color-yellow;
 @text-shadow-blue: 0 0 2px @color-white, 0 0 40px @color-blue;
 
+@spacing-small: 10px;
 @spacing-medium: 20px;
 @spacing-large: 30px;
 
@@ -18,6 +20,7 @@
 @color-black: #000;
 @color-yellow: #ffff00;
 @color-blue: #6a83fb;
+@color-gray: #9c9c9c;
 
 @transition: 0.4s;
 
@@ -88,18 +91,52 @@ h2 {
     }
   }
 }
+
 .navbarnavigation {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   .linkbutton {
-    margin: 20px;
+    margin: @spacing-small;
   }
   .navbutton {
-    padding: 10px 20px;
-    font-size: @font-size-subheader;
+    min-width: 100px;
+    border-radius: @border-radius-small;
+    font-size: @font-size-standart;
+    padding: 10px;
+    font-family: @font-family-main;
+    font-weight: @font-bold;
+    background: none;
+    outline: none;
+    transition: @transition;
     cursor: pointer;
+    &[disabled],
+    &[disabled]:hover {
+      background: @color-gray;
+      color: gray;
+      border: 1px solid @color-gray;
+      cursor: auto;
+    }
+  }
+
+  .dark {
+    border: 1px solid @color-white;
+    color: @color-white;
+
+    &:hover {
+      background-color: @color-white;
+      color: @color-black;
+    }
+  }
+
+  .light {
+    border: 1px solid @color-black;
+    color: @color-black;
+    &:hover {
+      background-color: @color-black;
+      color: @color-white;
+    }
   }
 }
 .main-container {
