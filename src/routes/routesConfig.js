@@ -2,6 +2,7 @@ import { NotFoundPage } from "../containers/App/NotFoundPage";
 import { HomePage } from "../containers/HomePage/HomePage";
 import { PeoplePageWE } from "../containers/PeoplePage/PeoplePage";
 import { PersonPageWE } from "../components/PeoplePage/PeopleList/PersonPage";
+import { PeoplePageWithInfinity } from "../containers/PeoplePage/PeoplePageWithInfinity";
 
 
 const routesConfig = [
@@ -13,6 +14,11 @@ const routesConfig = [
     path: "/people",
     element: <PeoplePageWE />
   },
+  {
+    path: "/people-infinity",
+    element: <PeoplePageWithInfinity />
+  },
+
   {
     path: "/people/:id",
     element: <PersonPageWE />

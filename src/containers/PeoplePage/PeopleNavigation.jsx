@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { UiButton } from "./UiButton";
 
@@ -25,10 +24,5 @@ const PeopleNavigation = ({
     </div>
   );
 };
-PeopleNavigation.propTypes = {
-  getResourse: PropTypes.func,
-  previousPage: PropTypes.string,
-  nextPage: PropTypes.string,
-  counterPage: PropTypes.number,
-};
+
 export { PeopleNavigation };

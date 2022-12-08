@@ -1,14 +1,12 @@
-import PropTypes from "prop-types";
-
 const PersonInfo = ({ personInfo }) => {
   return (
-    <div>
-      <ul>
+    <div className="person-wrapper-info">
+      <ul className="info-container">
         {personInfo.map(
           ({ title, data }) =>
             data && (
-              <li key={title}>
-                <span>
+              <li className="info-list-items" key={title}>
+                <span className="info-item">
                   {title} : {data}
                 </span>
               </li>
@@ -18,7 +16,5 @@ const PersonInfo = ({ personInfo }) => {
     </div>
   );
 };
-PersonInfo.propTypes = {
-  personInfo: PropTypes.array,
-};
+
 export { PersonInfo };

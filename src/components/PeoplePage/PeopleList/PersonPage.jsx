@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import { getPeopleImg } from "../../../services/getPeopleData";
 import { PersonInfo } from "./PersonInfo";
 import { PersonPhoto } from "./PersonPhoto";
+import { BackButton } from "./BackButton";
+import { FilmComponent } from "./FilmComponent";
 
 const PersonPage = ({ setErrorApi }) => {
   const [personInfo, setPersonInfo] = useState(null);
@@ -27,11 +29,10 @@ const PersonPage = ({ setErrorApi }) => {
           { title: "Eye color", data: res.eye_color },
           { title: "Birth year", data: res.birth_year },
           { title: "Gender", data: res.gender },
-          { title: "Films", data: res.films },
         ]);
         setPersonName(res.name);
         setPersonImg(getPeopleImg(personID));
-        //res.films - дальше использовать
+        console.log("film", res.films);
         setErrorApi(false);
       } else {
         setErrorApi(true);
@@ -40,16 +41,18 @@ const PersonPage = ({ setErrorApi }) => {
   }, []);
 
   return (
-    <div>
-      <h1>{personName}</h1>
-      <PersonPhoto personImg={personImg} personName={personName} />
-      {personInfo && <PersonInfo personInfo={personInfo} />}
-    </div>
+    <>
+      <BackButton />
+      <div className="wrapper-person-page">
+        <span className="person-page-name">{personName}</span>
+        <div className="wrapper-person-pi">
+          <PersonPhoto personImg={personImg} personName={personName} />
+          {personInfo && <PersonInfo personInfo={personInfo} />}
+          <FilmComponent />
+        </div>
+      </div>
+    </>
   );
-};
-
-PersonPage.propTypes = {
-  setErrorApi: PropTypes.func,
 };
 
 export const PersonPageWE = withErrorApi(PersonPage);

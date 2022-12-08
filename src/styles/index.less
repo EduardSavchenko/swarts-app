@@ -1,34 +1,4 @@
-@border-radius-small: 3px;
-
-@font-family-main: sans-serif;
-@font-bold: 600;
-
-@font-size-header: 26px;
-@font-size-subheader: 18px;
-@font-size-main: 16px;
-@font-size-standart: 14px;
-
-@text-shadow-yellow: 0 0 2px @color-white, 0 0 40px @color-yellow;
-@text-shadow-blue: 0 0 2px @color-white, 0 0 40px @color-blue;
-
-@spacing-small: 10px;
-@spacing-medium: 20px;
-@spacing-large: 30px;
-
-@color-dark-gray: #10100e;
-@color-white: #fff;
-@color-black: #000;
-@color-yellow: #ffff00;
-@color-blue: #6a83fb;
-@color-gray: #9c9c9c;
-
-@transition: 0.4s;
-
-@theme-default-header-color: #cccc46;
-@theme-default-bgimage: url("http://localhost:3000/bg.jpg"); // проконсультироваться, не смог достучаться через src/img/bg.jpg
-@color-violet: #ae72c2;
-
-@max-width: 1200px;
+@import "variables";
 
 body {
   font-family: @font-family-main;
@@ -190,6 +160,10 @@ h2 {
 }
 
 .notfound {
+  .notfoundimg {
+    display: flex;
+    justify-content: center;
+  }
   img {
     width: 250px;
     margin: auto;
@@ -211,5 +185,70 @@ h2 {
     font-size: @font-size-subheader;
     text-align: center;
     text-shadow: @text-shadow-blue;
+  }
+}
+.wrapper-person-page {
+  margin-top: 45px;
+  .person-page-name {
+    padding: @spacing-small;
+    font-size: @font-size-subheader;
+    font-weight: @font-bold;
+    color: @color-white;
+    background-color: @color-blue;
+    border-radius: @border-radius-small;
+  }
+  .wrapper-person-pi {
+    border-left: 5px solid @color-blue;
+    display: flex;
+    flex-wrap: wrap;
+    padding: @spacing-medium;
+    border-radius: @border-radius-small;
+    .person-wrapper-img {
+      width: 250px;
+      height: 350px;
+      .person-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+
+    .person-wrapper-info {
+      width: 300px;
+      color: @color-white;
+      padding: @spacing-medium;
+      margin: @spacing-small;
+      background-color: rgba(0, 0, 0, 0.55);
+      border-radius: @border-radius-medium;
+      border: 1px solid @color-blue;
+
+      .info-container {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .info-list-items {
+        background-color: @color-blue;
+        padding: @spacing-ultra-small;
+        margin: @spacing-small;
+        border-radius: @border-radius-small;
+      }
+      .info-item {
+      }
+    }
+    @media screen and (max-width: 800px) {
+      .person-wrapper-info {
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+      }
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .wrapper-person-pi {
+      display: flex;
+      justify-content: center;
+    }
   }
 }

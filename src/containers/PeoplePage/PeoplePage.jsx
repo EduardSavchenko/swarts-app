@@ -9,7 +9,6 @@ import {
   getPeoplePageId,
 } from "../../services/getPeopleData";
 import { PeopleList } from "../../components/PeoplePage/PeopleList/PeopleList";
-import PropTypes from "prop-types";
 import { PeopleNavigation } from "./PeopleNavigation";
 
 const PeoplePage = ({ setErrorApi }) => {
@@ -61,10 +60,6 @@ const PeoplePage = ({ setErrorApi }) => {
       {people && <PeopleList people={people} />}
     </>
   );
-};
-
-PeoplePage.propTypes = {
-  setErrorApi: PropTypes.func,
 };
 
 export const PeoplePageWE = withErrorApi(PeoplePage);

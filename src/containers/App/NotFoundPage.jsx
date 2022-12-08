@@ -11,8 +11,10 @@ const NotFoundPage = () => {
     <div className="notfound">
       <h1>404 NOT FOUND PAGE</h1>
       <p>No match for {location.pathname}</p>
-      <img className="" src={img} alt="jedi" />
-      <img className="" src={img2} alt="404" />
+      <div className="notfoundimg">
+        <img src={img} alt="jedi" />
+        <img src={img2} alt="404" />
+      </div>
     </div>
   );
 };

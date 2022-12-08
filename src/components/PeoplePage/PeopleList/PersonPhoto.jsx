@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 
 const PersonPhoto = ({ personImg, personName }) => {
   return (
-    <>
-      <img src={personImg} alt={personName} />
-    </>
+    <div className="person-wrapper-img">
+      <img className="person-img" src={personImg} alt={personName} />
+    </div>
   );
 };
 PersonPhoto.propTypes = {
