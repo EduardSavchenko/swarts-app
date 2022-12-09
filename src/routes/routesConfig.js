@@ -3,6 +3,7 @@ import { HomePage } from "../containers/HomePage/HomePage";
 import { PeoplePageWE } from "../containers/PeoplePage/PeoplePage";
 import { PersonPageWE } from "../components/PeoplePage/PeopleList/PersonPage";
 import { PeoplePageWithInfinity } from "../containers/PeoplePage/PeoplePageWithInfinity";
+import { FilterCharByFilm } from "../containers/PeoplePage/FilterCharByFilm";
 
 
 const routesConfig = [
@@ -18,7 +19,10 @@ const routesConfig = [
     path: "/people-infinity",
     element: <PeoplePageWithInfinity />
   },
-
+  {
+    path: "/filter-char-by-film/",
+    element: <FilterCharByFilm />
+  },
   {
     path: "/people/:id",
     element: <PersonPageWE />

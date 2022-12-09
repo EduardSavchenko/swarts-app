@@ -15,6 +15,9 @@ const MainMenu = () => {
             <NavLink to="/people-infinity/"> People Infinity </NavLink>
           </li>
           <li>
+            <NavLink to="/filter-char-by-film/"> Filter Char By Film</NavLink>
+          </li>
+          <li>
             <NavLink to="/not-found"> Not Found </NavLink>
           </li>
         </ul>

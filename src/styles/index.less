@@ -125,7 +125,9 @@ h2 {
   padding: 0;
   margin: 0;
   list-style-type: none;
+  height: 74vh;
   overflow-y: auto;
+
   .item {
     width: 190px;
     margin: @spacing-medium;
@@ -252,4 +254,23 @@ h2 {
       justify-content: center;
     }
   }
+}
+.filter {
+  h1 {
+    color: #fff;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    color: #fff;
+  }
+  img {
+    width: 150px;
+    object-fit: cover;
+  }
+}
+::-webkit-scrollbar {
+  display: none;
 }

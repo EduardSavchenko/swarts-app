@@ -39,6 +39,16 @@ export const getApiResourse = async (url) => {
     }
 }
 
+export async function getPeopleName(id) {
+    let res = await fetch(`https://swapi.dev/api/people/${id}`)
+    let data = await res.json()
+    const a = data.name;
+    return a, console.log(a);
+
+}
+
+
+
 
 /*(async () => {
     const body = await getApiResourse(SWAPI_ROOT + SWAPI_PEOPLE);
