@@ -4,15 +4,13 @@ import { MainLayout } from "./MainLayout";
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          {routesConfig.map((el, index) => (
-            <Route key={index} path={el.path} element={el.element} />
-          ))}
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        {routesConfig.map((el, index) => (
+          <Route key={index} path={el.path} element={el.element} />
+        ))}
+      </Route>
+    </Routes>
   );
 };
 

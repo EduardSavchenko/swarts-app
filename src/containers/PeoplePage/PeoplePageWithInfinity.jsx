@@ -1,72 +1,72 @@
-import { useEffect, useRef, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
-import { getApiResourse, chancheHTTP } from "../../utils/network";
-import { API_PEOPLE } from "../../constants/api";
-import {
-  getPeopleId,
-  getPeopleImg,
-  getPeoplePageId,
-} from "../../services/getPeopleData";
-import { PeopleList } from "../../components/PeoplePage/PeopleList/PeopleList";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import { getApiResourse } from "../../utils/network";
+
+import { getPeopleId, getPeopleImg } from "../../services/getPeopleData";
+
 const PeoplePageWithInfinity = () => {
-  const listInnerRef = useRef();
+  const [people, setPeople] = useState([]); // массив с персонажами
+  const [currPage, setCurrPage] = useState(1);
+  const [prevPage, setPrevPage] = useState(0);
+  const [lastPage, setLastPage] = useState(false);
+  const container = useRef(null);
 
-  const [people, setPeople] = useState(null); // массив с персонажами
-  const [previousPage, setPreviousPage] = useState(null); // предыдущая страница  с api
-  const [nextPage, setNextPage] = useState(null); // следующая страница с api
-  const [counterPage, setCounterPage] = useState(1);
-  let [searchParams, setSearchParams] = useSearchParams(); //хук с RR
+  /*let c = 1;*/
+  console.log("перерендер");
 
-  const queryPage = searchParams.get("page");
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getResourse();
+      console.log(res, "<<<");
+      setPrevPage(currPage);
+      setPeople([...people, ...res]);
+    };
+    if (!lastPage && prevPage !== currPage) {
+      fetchData();
+    }
+  }, [currPage, lastPage, prevPage, people]);
 
   const getResourse = async (url) => {
-    const res = await getApiResourse(url);
-
-    if (res) {
-      const peopleList = res.results.map(({ name, url }) => {
-        const id = getPeopleId(url);
-        const img = getPeopleImg(id);
-        return {
-          id,
-          name,
-          img,
-        };
-      });
-      setPeople(peopleList);
-      setPreviousPage(chancheHTTP(res.previous));
-      setNextPage(chancheHTTP(res.next));
-      setCounterPage(getPeoplePageId(url));
+    const res = await getApiResourse(
+      `https://swapi.py4e.com/api/people/?page=${currPage}`
+    );
+    if (!res.results.length) {
+      setLastPage(true);
+      return;
     }
+    return res.results.map(({ name, url }) => {
+      const id = getPeopleId(url);
+      const img = getPeopleImg(id);
+      return {
+        id,
+        name,
+        img,
+      };
+    });
   };
-  const handleScroll = (e) => {
+
+  /* const handleScroll = (e) => {
     let scrollTop = e.target.documentElement.scrollTop;
     let windowHeight = window.innerHeight;
     let scrollHeight = e.target.documentElement.scrollHeight;
-    console.log(scrollTop);
-    console.log(windowHeight);
-    console.log(scrollHeight);
     if (windowHeight + scrollTop + 1 >= scrollHeight) {
-      getResourse(nextPage);
+      getResourse();
     }
-  };
-  useEffect(() => {
-    getResourse(API_PEOPLE + queryPage);
-    window.addEventListener("scroll", handleScroll);
-  }, []);
+  };*/
 
-  /* const onScroll = () => {
-    if (listInnerRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-      if (scrollTop + clientHeight + 1 >= scrollHeight) {
-        console.log("at the bottom page");
+  const onScroll = () => {
+    if (container.current) {
+      const { scrollTop, scrollHeight, clientHeight } = container.current;
+      if (scrollTop + clientHeight + 100 >= scrollHeight) {
+        setCurrPage(currPage + 1);
       }
     }
-  }; */ // не смогу достучаться к элементу через Ref current (нужна консультация....)
+  };
 
   return (
     <>
       {people && (
-        <ul className="container">
+        <ul className="container" ref={container} onScroll={onScroll}>
           {people.map(({ name, id, img }) => (
             <li className="item" key={id}>
               <Link to={`/people/${id}`}>
