@@ -4,7 +4,7 @@ import { PeoplePageWE } from "../containers/PeoplePage/PeoplePage";
 import { PersonPageWE } from "../components/PeoplePage/PeopleList/PersonPage";
 import { PeoplePageWithInfinity } from "../containers/PeoplePage/PeoplePageWithInfinity";
 import { FilterCharByFilm } from "../containers/PeoplePage/FilterCharByFilm";
-
+import { FavoriteItemPage } from "../components/PeoplePage/PeopleList/FavoriteItemPage";
 
 const routesConfig = [
   {
@@ -22,6 +22,10 @@ const routesConfig = [
   {
     path: "/filter-char-by-film/",
     element: <FilterCharByFilm />
+  },
+  {
+    path: "/favorite-page/",
+    element: <FavoriteItemPage />
   },
   {
     path: "/people/:id",

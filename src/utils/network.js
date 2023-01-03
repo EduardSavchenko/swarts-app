@@ -20,6 +20,7 @@ export { chancheHTTP }
 */
 
 
+
 /**
  * Отправялет запрос fetch 
  * @param {String} url для запроса
@@ -39,20 +40,9 @@ export const getApiResourse = async (url) => {
     }
 }
 
-export async function getPeopleName(id) {
-    let res = await fetch(`https://swapi.dev/api/people/${id}`)
-    let data = await res.json()
-    const a = data.name;
-    return a, console.log(a);
-
+export const makeConcurrentRequest = async (urls) => {
+    const data = await Promise.all(urls.map(res => {
+        return fetch(res).then(res => res.json())
+    }));
+    return data;
 }
-
-
-
-
-/*(async () => {
-    const body = await getApiResourse(SWAPI_ROOT + SWAPI_PEOPLE);
-    console.log(body);
-})();  // асинхронная самовызывающаяся функция (useEffect)
-
-*/

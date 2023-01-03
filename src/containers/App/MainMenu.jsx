@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
+import ButtonFavoriteLink from "../../components/PeoplePage/ButtonFavoriteLink";
 
 const MainMenu = () => {
   return (
     <div className="header">
-      <nav className="">
+      <nav className="menu-wrapper">
         <ul className="menu">
           <li>
             <NavLink to="/">Home</NavLink>
@@ -21,6 +22,7 @@ const MainMenu = () => {
             <NavLink to="/not-found"> Not Found </NavLink>
           </li>
         </ul>
+        <ButtonFavoriteLink />
       </nav>
     </div>
   );

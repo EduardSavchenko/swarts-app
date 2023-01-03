@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import Select from "react-select";
-import { getPeopleId, getPeopleImg } from "../../services/getPeopleData";
-import { getPeopleName } from "../../utils/network";
+import { FilteredChar } from "./FilteredChar";
+
 const FilterCharByFilm = () => {
   const [films, setFilms] = useState([]);
   const [chars, setChars] = useState([]);
@@ -24,9 +24,9 @@ const FilterCharByFilm = () => {
       setSelectedValue(loadListFC[0].title);
       setChars(loadListFC[0].characters);
     };
+
     fetchdata();
   }, []);
-  console.log(films);
 
   const arrOptions = films.map((el) => {
     const value = el.title;
@@ -36,16 +36,11 @@ const FilterCharByFilm = () => {
       label,
     };
   });
-
   const handChange = (e) => {
-    nahodka();
     const changeValue = e.value;
+    let spisokP = films.find((fi) => fi.title === changeValue);
     setSelectedValue(changeValue);
-  };
-  const nahodka = () => {
-    const spisokP = films.find((fi) => fi.title === selectedValue);
     setChars(spisokP.characters);
-    console.log(chars);
   };
   return (
     <div className="filter">
@@ -55,14 +50,8 @@ const FilterCharByFilm = () => {
         onChange={handChange}
       />
       <h1>Char of: {selectedValue} </h1>
-      <ul>
-        {chars.map((el, index) => (
-          <li key={index}>
-            <img src={getPeopleImg(getPeopleId(el))}></img>
-            <p></p>
-          </li>
-        ))}
-      </ul>
+
+      <FilteredChar filteredchar={chars} />
     </div>
   );
 };

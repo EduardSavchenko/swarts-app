@@ -12,12 +12,10 @@ const PeoplePageWithInfinity = () => {
   const container = useRef(null);
 
   /*let c = 1;*/
-  console.log("перерендер");
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await getResourse();
-      console.log(res, "<<<");
       setPrevPage(currPage);
       setPeople([...people, ...res]);
     };

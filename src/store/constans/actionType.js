@@ -1,0 +1,6 @@
+const actionType = {
+    ADD_PERSON_TO_FAVORITE: "ADD_PERSON_TO_FAVORITE",
+    REMOVE_PERSON_FROM_FAVORITE: "REMOVE_PERSON_FROM_FAVORITE"
+}
+
+export default actionType;

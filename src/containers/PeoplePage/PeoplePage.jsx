@@ -27,7 +27,6 @@ const PeoplePage = ({ setErrorApi }) => {
       const peopleList = res.results.map(({ name, url }) => {
         const id = getPeopleId(url);
         const img = getPeopleImg(id);
-        console.log(url);
         return {
           id,
           name,

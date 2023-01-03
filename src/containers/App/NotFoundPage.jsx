@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import React from "react";
 import { useLocation } from "react-router";
 import img2 from "../../img/404.png";

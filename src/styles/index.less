@@ -29,10 +29,46 @@ h2 {
     padding: @spacing-large @spacing-large;
   }
 }
+.containter-favorite {
+  position: relative;
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 35px;
+  height: 35px;
+  .counter-current {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+  }
+  .icon-favorite {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
 .header {
   display: flex;
   align-items: center;
+  flex-direction: column;
   margin-bottom: @spacing-large;
+
+  .menu-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
   .menu {
     display: flex;
     flex-wrap: wrap;
@@ -62,6 +98,44 @@ h2 {
   }
 }
 
+.wrapper-films {
+  margin-left: @spacing-large;
+  padding: @spacing-medium 0;
+  .container-films {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .item-films {
+    display: flex;
+    align-items: center;
+    margin-bottom: @spacing-ultra-small;
+    color: @color-white;
+  }
+  .episode-films {
+    padding: @spacing-ultra-small;
+    border-radius: @border-radius-small;
+    background-color: @color-red;
+  }
+  .colon-films {
+    width: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .title-films {
+    text-shadow: @text-shadow-yellow;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .wrapper-films {
+    width: 100%;
+    margin: 0;
+  }
+}
+.loader {
+  width: 120px;
+  height: 120px;
+}
 .navbarnavigation {
   display: flex;
   flex-direction: row;
@@ -131,6 +205,7 @@ h2 {
   .item {
     width: 190px;
     margin: @spacing-medium;
+    height: fit-content;
     border-radius: @border-radius-small;
     background-color: @color-white;
     cursor: pointer;
@@ -207,6 +282,7 @@ h2 {
     padding: @spacing-medium;
     border-radius: @border-radius-small;
     .person-wrapper-img {
+      position: relative;
       width: 250px;
       height: 350px;
       .person-img {
@@ -214,6 +290,14 @@ h2 {
         height: 100%;
         object-fit: cover;
         object-position: center center;
+      }
+      .iconFavorite {
+        position: absolute;
+        top: -7px;
+        right: -5px;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
       }
     }
 
@@ -262,9 +346,11 @@ h2 {
   ul {
     display: flex;
     flex-wrap: wrap;
+    list-style-type: none;
   }
   li {
     color: #fff;
+    list-style-type: none;
   }
   img {
     width: 150px;
